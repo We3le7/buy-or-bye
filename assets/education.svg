@@ -1,0 +1,21 @@
+<svg width="400" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="160" fill="#F5F2EA"/>
+<!-- school building -->
+<rect x="120" y="60" width="160" height="70" fill="#003B5C"/>
+<polygon points="200,28 120,60 280,60" fill="#0D4A6E"/>
+<rect x="150" y="78" width="22" height="22" fill="#F5F2EA"/>
+<rect x="189" y="78" width="22" height="34" fill="#F5F2EA"/>
+<rect x="228" y="78" width="22" height="22" fill="#F5F2EA"/>
+<rect x="196" y="14" width="3" height="18" fill="#0A0A0B"/>
+<path d="M199 14h26l-8 8 8 8h-26z" fill="#DC2626"/>
+<!-- books -->
+<rect x="42" y="96" width="64" height="14" rx="2" fill="#DC2626"/>
+<rect x="48" y="80" width="52" height="14" rx="2" fill="#F59E0B"/>
+<rect x="54" y="64" width="40" height="14" rx="2" fill="#328BB1"/>
+<!-- graduation cap -->
+<polygon points="330,50 366,62 330,74 294,62" fill="#0A0A0B"/>
+<rect x="352" y="66" width="4" height="24" fill="#0A0A0B"/>
+<circle cx="356" cy="94" r="5" fill="#F59E0B"/>
+<!-- ground -->
+<rect x="0" y="130" width="400" height="30" fill="#E4DCC8"/>
+</svg>

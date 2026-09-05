@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>买房 vs 租房 · 2026 年度住房决策调研报告</title>
+<meta name="description" content="基于 2026 年 7 月国家统计局 70 城数据与中指研究院百城指数，8 座核心城市 × 4 种居住周期的买房租房完整经济账。">
+<style>
+:root{
+  --navy:#003B5C; --navy-deep:#001629; --ink:#0A0A0B; --text2:#52525B;
+  --border:#E4E4E7; --bg:#FAFAFA; --card:#FFFFFF; --blue:#3B82F6;
+  --green:#059669; --red:#DC2626; --amber:#D97706; --amber-bright:#F59E0B;
+  --strip:#F4F4F5;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.num{font-family:"Inter","SF Pro Display","Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1440px;margin:0 auto;padding:0 80px}
+@media(max-width:900px){.wrap{padding:0 24px}}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.brand svg{display:block}
+.nav-links{display:flex;gap:32px}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.btn-primary{display:inline-block;background:var(--navy);color:#fff;font-size:14px;font-weight:600;padding:10px 20px;border-radius:4px;text-decoration:none;transition:background .2s}
+.btn-primary:hover{background:#00507d}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(160deg,#003B5C 0%,#001629 100%);color:#fff;padding:88px 0 64px}
+.hero-badge{display:inline-block;font-size:13px;font-weight:500;padding:6px 14px;border-radius:2px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);margin-bottom:32px}
+.hero h1{font-size:76px;font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:24px}
+.hero .sub{font-size:19px;opacity:.75;max-width:680px;line-height:1.7;margin-bottom:48px}
+.hero-stats{display:flex;gap:48px;margin-bottom:56px;flex-wrap:wrap}
+.hero-stats .num{font-size:32px;font-weight:700;line-height:1.2}
+.hero-stats span{display:block;font-size:13px;opacity:.6;margin-top:4px}
+@media(max-width:900px){.hero h1{font-size:44px}.hero-stats{gap:28px}}
+
+.chart-card{background:#fff;border-radius:4px;padding:32px;color:var(--ink);box-shadow:0 24px 48px -12px rgba(0,0,0,.35)}
+.chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.chart-head h3{font-size:17px;font-weight:600}
+.chart-head .range{font-size:12px;color:var(--text2);margin-top:4px}
+.legend{display:flex;gap:20px;align-items:center;font-size:12px;color:var(--text2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.chart-body{position:relative}
+.bars{display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:320px}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-row .lab{width:48px;text-align:right;font-size:13px;flex-shrink:0}
+.bar-row .track{flex:1;max-width:560px}
+.bar-row .bar{height:20px;border-radius:0 2px 2px 0;animation:grow 1.2s cubic-bezier(.22,.61,.36,1) both}
+.bar-row .val{font-size:13px;white-space:nowrap}
+@keyframes grow{from{width:0}}
+.kpi-float{position:absolute;right:0;top:40px;display:flex;flex-direction:column;gap:28px}
+.kpi{background:#fff;border-radius:4px;padding:16px;min-width:180px;box-shadow:0 10px 24px -4px rgba(0,0,0,.18)}
+.kpi small{display:block;font-size:12px;color:var(--text2)}
+.kpi .num{font-size:24px;font-weight:700}
+.kpi.gold{background:#FFF8EB;border:1px solid var(--amber-bright)}
+.kpi.gold .num{color:var(--amber)}
+.kpi.navy .num{color:var(--navy)}
+.kpi.blue .num{color:var(--blue)}
+@media(max-width:1100px){.kpi-float{position:static;flex-direction:row;margin-top:24px;flex-wrap:wrap}}
+
+/* ---------- sections ---------- */
+section{padding:96px 0}
+section.strip{background:var(--strip)}
+section.white{background:#fff}
+.sec-label{font-size:14px;font-weight:600;letter-spacing:2px;color:var(--navy);margin-bottom:12px}
+.sec-title{font-size:40px;font-weight:700;line-height:1.3;margin-bottom:12px}
+.sec-desc{font-size:17px;color:var(--text2);max-width:720px;margin-bottom:48px}
+@media(max-width:900px){.sec-title{font-size:28px}section{padding:64px 0}}
+
+/* conclusion cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:2px;padding:32px}
+.card .tag{display:inline-block;font-size:13px;font-weight:600;padding:4px 10px;border-radius:2px;margin-bottom:16px}
+.card h3{font-size:24px;font-weight:700;margin-bottom:12px;line-height:1.4}
+.card p{font-size:15px;color:var(--text2);line-height:1.75}
+.card.dark{background:var(--ink);border-color:var(--ink)}
+.card.dark h3{color:#fff}
+.card.dark p{color:rgba(255,255,255,.72)}
+@media(max-width:900px){.cards3{grid-template-columns:1fr}}
+
+/* table */
+.table-wrap{border:1px solid var(--border);border-radius:2px;overflow-x:auto;background:#fff}
+table{width:100%;border-collapse:collapse;min-width:860px}
+thead th{background:var(--ink);color:#fff;font-weight:600;font-size:14px;text-align:left;padding:16px 24px;white-space:nowrap}
+tbody td{padding:14px 24px;font-size:14px;border-top:1px solid var(--border);white-space:nowrap}
+tbody tr:nth-child(even){background:#FAFAFA}
+.lvl{display:inline-block;font-size:11px;padding:2px 8px;border-radius:2px;background:#F4F4F5;color:var(--text2);margin-left:8px;font-weight:400}
+td .num.strong{font-weight:600;color:var(--ink)}
+td .num{color:var(--text2)}
+.hi{color:var(--navy);font-weight:600}
+.table-note{font-size:13px;color:var(--text2);margin-top:16px}
+
+/* cycle cards */
+.cycles{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.cycle{background:#fff;border:1px solid var(--border);border-radius:2px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.cycle .head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.cycle h3{font-size:20px;font-weight:700}
+.cycle .badge{font-size:12px;font-weight:600;padding:4px 10px;border-radius:2px;white-space:nowrap}
+.cycle p{font-size:13px;color:var(--text2);line-height:1.7}
+.cycle .rows{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.cycle .row{display:flex;justify-content:space-between;font-size:13px}
+.cycle .row .city{color:var(--text2)}
+.cycle .row .delta{font-weight:600}
+.pos{color:var(--green)}.neg{color:var(--red)}.mid{color:var(--amber)}
+.cycle.dark{background:var(--ink);border-color:var(--ink)}
+.cycle.dark h3{color:#fff}
+.cycle.dark p{color:rgba(255,255,255,.72)}
+.cycle.dark .row .city{color:rgba(255,255,255,.6)}
+@media(max-width:1100px){.cycles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.cycles{grid-template-columns:1fr}}
+
+/* sensitivity */
+.sens-grid{display:grid;grid-template-columns:1fr 520px;gap:64px;align-items:start}
+@media(max-width:1100px){.sens-grid{grid-template-columns:1fr}}
+.matrix{background:#FAFAFA;border:1px solid var(--border);border-radius:2px;padding:28px}
+.matrix h4{font-size:15px;font-weight:600;margin-bottom:12px}
+.matrix table{min-width:0}
+.matrix thead th{background:transparent;color:var(--text2);font-size:12px;padding:8px;text-align:center}
+.matrix thead th:first-child{text-align:left}
+.matrix thead th.base{background:#EFF6FF;color:var(--navy)}
+.matrix tbody td{border-top:1px solid var(--border);padding:10px 8px;text-align:center;font-size:13px}
+.matrix tbody td:first-child{text-align:left;font-weight:500;color:var(--ink);font-size:12px}
+.matrix tbody tr.down{background:#FEF2F2}
+.matrix tbody tr.flat{background:#fff}
+.matrix tbody tr.base{background:#F0F9FF}
+.matrix td.base-cell{background:#EFF6FF;font-weight:700;color:var(--navy)}
+.matrix-note{font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px}
+
+/* non-financial */
+.nf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.nf-card{background:#fff;border:1px solid var(--border);border-radius:2px;overflow:hidden}
+.nf-card img{width:100%;height:160px;object-fit:cover;display:block}
+.nf-card .body{padding:24px}
+.nf-card .tag{font-size:12px;font-weight:600;letter-spacing:1px;color:var(--navy);margin-bottom:8px}
+.nf-card h3{font-size:19px;font-weight:700;margin-bottom:10px;line-height:1.45}
+.nf-card p{font-size:14px;color:var(--text2);line-height:1.7}
+@media(max-width:900px){.nf-grid{grid-template-columns:1fr}}
+
+/* checklist */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rule{display:flex;align-items:center;gap:16px;background:#FAFAFA;border:1px solid var(--border);border-radius:2px;padding:24px}
+.rule .no{font-size:22px;font-weight:700;color:var(--navy)}
+.rule p{font-size:16px;font-weight:500;line-height:1.6}
+@media(max-width:900px){.rules{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--ink);color:#fff;padding:64px 0 40px}
+footer .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:24px}
+footer .brand{margin-bottom:12px}
+footer .tagline{font-size:13px;color:rgba(255,255,255,.6);max-width:420px;line-height:1.7}
+footer .meta{font-size:13px;color:rgba(255,255,255,.6);line-height:2.1}
+footer .bottom{border-top:.5px solid rgba(255,255,255,.35);padding-top:24px;font-size:12px;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="24" height="24" rx="6" fill="#003B5C"/><path d="M8 20V13L14 8L20 13V20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      居研所 · 买房 vs 租房
+    </div>
+    <div class="nav-links">
+      <a href="#conclusion">核心结论</a>
+      <a href="#data">数据对比</a>
+      <a href="#cycles">周期模拟</a>
+      <a href="#rules">决策清单</a>
+    </div>
+    <a class="btn-primary" href="#rules">查看决策清单</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-badge">基于 2026 年 7 月国家统计局 70 城数据 · 中指研究院百城指数</div>
+    <h1>买房，还是租房？</h1>
+    <p class="sub">持有周期决定胜负：3 年短期一线城市租房更划算，5 年起买房全面转正，10 年以上优势显著。本报告以 90㎡ 改善型住房为标准，模拟 3 / 5 / 10 / 30 年四种居住周期的完整经济账。</p>
+    <div class="hero-stats">
+      <div><div class="num">8 城</div><span>北上广深 + 杭蓉宁汉</span></div>
+      <div><div class="num">4 种周期</div><span>3 / 5 / 10 / 30 年情景模拟</span></div>
+      <div><div class="num">2.5%</div><span>资金机会成本假设（年化）</span></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <h3>图 1 · 居住 10 年：8 城买房 vs 租房净财富差（万元）</h3>
+          <div class="range">净财富差 = 房价增值 + 租金节省 − 资金机会成本 − 交易税费 · 正值代表买房更优</div>
+        </div>
+        <div class="legend"><span><i style="background:#003B5C"></i>净财富差（万元）</span><span><i style="background:#3B82F6"></i>投资收益率假设 2.5%</span></div>
+      </div>
+      <div class="chart-body">
+        <div class="bars" id="bars"></div>
+        <div class="kpi-float">
+          <div class="kpi navy"><small>10 年最优 · 上海</small><span class="num">+112.5 万</span></div>
+          <div class="kpi blue"><small>3 年一线 · 租房最多省</small><span class="num">19.4 万</span></div>
+          <div class="kpi gold"><small>临界持有年限</small><span class="num">5 年转正</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="conclusion">
+  <div class="wrap">
+    <div class="sec-label">01 · 核心结论</div>
+    <h2 class="sec-title">没有标准答案，只有匹配你情况的答案</h2>
+    <p class="sec-desc">我们用统一框架分析了 8 座核心城市的数据：决定买还是租的，从来不是房价本身，而是持有周期、租售比和城市基本面这三个变量。</p>
+    <div class="cards3">
+      <div class="card">
+        <span class="tag" style="background:#EAF2F8;color:#003B5C">租售比 ≥ 2.5% 的城市</span>
+        <h3>成都、武汉买房即赢</h3>
+        <p>武汉租售比 2.98%、成都 2.80%，收租比存银行多赚一倍以上。即使房价年均跌 1%，高租金回报仍提供足够安全垫，短期买房也比租房划算。</p>
+      </div>
+      <div class="card">
+        <span class="tag" style="background:#EFF6FF;color:#3B82F6">持有不足 3 年 · 一线城市</span>
+        <h3>交易税费吃掉涨幅</h3>
+        <p>买入税费约 5% + 卖出中介 2%，7% 的交易摩擦远超 3 年涨幅。深圳 3 年周期租房比买房省 19.4 万，8 城中北京、上海、深圳、广州短期全部租房更优。</p>
+      </div>
+      <div class="card dark">
+        <span class="tag" style="background:#F59E0B;color:#0A0A0B">纯财务视角 · 警惕</span>
+        <h3>低租售比城市的陷阱</h3>
+        <p>深圳租售比仅 1.53%、北京 1.95%——收租仅比五年定存多 18%~50%。在这类城市买房，买的主要是学区、稳定等自住价值，纯财务回报跑不赢 2.5% 理财。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="data">
+  <div class="wrap">
+    <div class="sec-label">02 · 数据全景</div>
+    <h2 class="sec-title">八城核心指标全景对比</h2>
+    <p class="sec-desc">一线城市总价高、月供重；新一线的成都、武汉以低总价、高租售比形成显著优势。数据基准：2026 年 7 月。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>城市 / 能级</th><th>90㎡总价(万)</th><th>月租金(元)</th><th>租售比</th><th>月供(元)</th><th>首付(万)</th>
+        </tr></thead>
+        <tbody id="cityTable"></tbody>
+      </table>
+    </div>
+    <p class="table-note">深圳以 569.8 万总价居首但租售比仅 1.53%——买房收租连月供的一半都覆盖不了；武汉总价仅 116 万、租售比 2.98%，是 8 城中买房收租性价比最高的城市。</p>
+  </div>
+</section>
+
+<section class="strip" id="cycles">
+  <div class="wrap">
+    <div class="sec-label">03 · 四种居住周期模拟</div>
+    <h2 class="sec-title">3 年税费是坑，5 年转正，10 年拉开，30 年碾压</h2>
+    <p class="sec-desc">正值代表买房更优，负值代表租房更优。模型已计入资金机会成本：首付和月供差额按 2.5% 年化投资收益折算。</p>
+    <div class="cycles">
+      <div class="cycle">
+        <div class="head"><h3>居住 3 年</h3><span class="badge" style="background:#FEF2F2;color:#DC2626">一线租房更优</span></div>
+        <p>买入税费约 5% + 卖出中介 2%，7% 的交易摩擦远超 3 年涨幅。</p>
+        <div class="rows">
+          <div class="row"><span class="city">深圳</span><span class="val neg">租房省 19.4 万</span></div>
+          <div class="row"><span class="city">北京</span><span class="val neg">租房省 12.7 万</span></div>
+          <div class="row"><span class="city">成都</span><span class="val pos">买房赚 8.2 万</span></div>
+        </div>
+      </div>
+      <div class="cycle">
+        <div class="head"><h3>居住 5 年</h3><span class="badge" style="background:#ECFDF5;color:#059669">8 城全部转正</span></div>
+        <p>满五唯一免个税，交易成本大降。上海 +32.6 万领先，深圳仅 +5.8 万仍被摩擦拖累。</p>
+        <div class="rows">
+          <div class="row"><span class="city">上海</span><span class="val pos">买房赚 32.6 万</span></div>
+          <div class="row"><span class="city">杭州</span><span class="val pos">买房赚 26.5 万</span></div>
+          <div class="row"><span class="city">南京</span><span class="val mid">勉强持平 +1.1 万</span></div>
+        </div>
+      </div>
+      <div class="cycle">
+        <div class="head"><h3>居住 10 年</h3><span class="badge" style="background:#003B5C;color:#fff">优势全面爆发</span></div>
+        <p>上海 +112.5 万遥遥领先，杭州 +83.4 万超越北京。即使租售比最低的深圳也净赚 60.4 万。</p>
+        <div class="rows">
+          <div class="row"><span class="city">上海</span><span class="val pos">买房赚 112.5 万</span></div>
+          <div class="row"><span class="city">杭州</span><span class="val pos">买房赚 83.4 万</span></div>
+          <div class="row"><span class="city">深圳</span><span class="val pos">买房赚 60.4 万</span></div>
+        </div>
+      </div>
+      <div class="cycle dark">
+        <div class="head"><h3>长期定居 30 年</h3><span class="badge" style="background:#F59E0B;color:#0A0A0B">压倒性优势</span></div>
+        <p>假设房价年涨 1%-2%、租金年涨 2%。上海 +606 万、北京 +502 万——但 30 年变量太多，仅作基准参考。</p>
+        <div class="rows">
+          <div class="row"><span class="city">上海</span><span class="val pos">+606.2 万</span></div>
+          <div class="row"><span class="city">北京</span><span class="val pos">+502.4 万</span></div>
+          <div class="row"><span class="city">杭州</span><span class="val pos">+460.5 万</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="sens">
+  <div class="wrap">
+    <div class="sens-grid">
+      <div>
+        <div class="sec-label">04 · 敏感性分析</div>
+        <h2 class="sec-title">房价不跌，就足以支撑买房</h2>
+        <p class="sec-desc">以北京 10 年周期为例，测试房价年涨幅与投资收益率双变量变动下的优劣。临界点在「房价持平」——真正的风险在于持续下跌，而非不涨。</p>
+      </div>
+      <div class="matrix">
+        <h4>10 年净财富差（万元）· 北京</h4>
+        <table>
+          <thead><tr><th>涨幅 ＼ 收益</th><th>2.0%</th><th class="base">2.5% 基准</th><th>3.0%</th></tr></thead>
+          <tbody>
+            <tr class="down"><td>-1% 下跌</td><td class="neg">-15.4</td><td class="neg">-26.6</td><td class="neg">-38.2</td></tr>
+            <tr class="flat"><td>0% 持平</td><td class="pos">+36.4</td><td class="base-cell">+25.2</td><td class="pos">+13.6</td></tr>
+            <tr class="base"><td>+1% 基准</td><td class="pos">+93.1</td><td class="base-cell">+81.9</td><td class="pos">+70.2</td></tr>
+          </tbody>
+        </table>
+        <p class="matrix-note">成都、武汉因租售比更高（2.8%~2.98%），即使房价年均跌 1% 仍买房更优——高租金回报提供更强安全垫；深圳租售比仅 1.53%，对下跌最敏感，-1% 情景下租房优势达 38 万以上。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="wrap">
+    <div class="sec-label">05 · 非财务因素</div>
+    <h2 class="sec-title">买房决策不全是财务计算</h2>
+    <p class="sec-desc">通勤、教育、人口流动——三个无法完全量化、但深刻影响家庭生活质量的维度。</p>
+    <div class="nf-grid">
+      <div class="nf-card">
+        <img src="assets/commute.svg" alt="通勤插图">
+        <div class="body">
+          <div class="tag">6.1 通勤成本</div>
+          <h3>北京通勤者 10 年多花 100 个整天</h3>
+          <p>北京单程通勤 55 分钟为 8 城最长，成都 38 分钟最短。10 年下来差距约 2,400 小时——相当于 100 个整天堵在路上。</p>
+        </div>
+      </div>
+      <div class="nf-card">
+        <img src="assets/education.svg" alt="教育插图">
+        <div class="body">
+          <div class="tag">6.2 教育需求</div>
+          <h3>学区房溢价仍达 20%-40%</h3>
+          <p>北京、上海教育评分 9.5 分领跑全国。一线城市核心区学区房溢价 20%-40%——这是低租售比下家庭仍愿意买房的重要非财务原因。</p>
+        </div>
+      </div>
+      <div class="nf-card">
+        <img src="assets/population.svg" alt="人口插图">
+        <div class="body">
+          <div class="tag">6.3 人口流动</div>
+          <h3>深圳年增 25.9 万人重回第一</h3>
+          <p>人口流入支撑租金与房价韧性：深圳常住人口站上 1800 万，杭州数字经济持续吸纳人才；南京、武汉人口持平需警惕长期需求不足。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="rules">
+  <div class="wrap">
+    <div class="sec-label">06 · 决策清单</div>
+    <h2 class="sec-title">六条快速决策规则</h2>
+    <div class="rules">
+      <div class="rule"><span class="no num">01</span><p>计划 3 年内离开当前城市 → 租房，别买</p></div>
+      <div class="rule"><span class="no num">02</span><p>确定 5 年以上定居且有学区需求 → 买房，自住价值无法替代</p></div>
+      <div class="rule"><span class="no num">03</span><p>在成都、武汉等高租售比城市 → 买房兼具自住与投资，短期也划算</p></div>
+      <div class="rule"><span class="no num">04</span><p>在北京、深圳等低租售比城市且无学区需求 → 租房 + 理财，财务回报更高</p></div>
+      <div class="rule"><span class="no num">05</span><p>担心房价下跌 → 看租售比：高于 2.5% 的城市即使房价不涨也值得持有</p></div>
+      <div class="rule"><span class="no num">06</span><p>30 年长期定居 → 买房，但要选人口持续流入的城市</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="brand">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="24" height="24" rx="6" fill="#fff"/><path d="M8 20V13L14 8L20 13V20" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          居研所
+        </div>
+        <p class="tagline">用数据回答「买还是租」。本报告基于公开市场数据与情景假设建模，不构成投资建议。</p>
+      </div>
+      <div class="meta">
+        数据来源：国家统计局 · 中指研究院 · 中国房价行情网<br>
+        模型参数：首付 15%-20% · 利率 3.0% · 机会成本 2.5%<br>
+        自住价值不计入财务回报，请结合家庭情况单独评估
+      </div>
+    </div>
+    <div class="bottom">© 2026 居研所 · 买房 vs 租房年度调研 第 3 期</div>
+  </div>
+</footer>
+
+<script>
+// ---- 图 1：10 年净财富差条形图 ----
+const bars = [
+  ["上海", 112.5], ["杭州", 83.4], ["北京", 81.9], ["成都", 66.6],
+  ["深圳", 60.4], ["广州", 49.0], ["武汉", 43.5], ["南京", 22.3]
+];
+const max = bars[0][1];
+document.getElementById("bars").innerHTML = bars.map(([city, v], i) => {
+  const w = (v / max * 100).toFixed(1);
+  const tints = ["#003B5C","#0D4A6E","#12527B","#1A5F88","#22719B","#2A7EA6","#328BB1","#4A9BC4"];
+  const first = i === 0;
+  return `<div class="bar-row">
+    <span class="lab" style="${first ? 'font-weight:600' : ''}">${city}</span>
+    <div class="track"><div class="bar" style="width:${w}%;background:${tints[i]};animation-delay:${i * 80}ms"></div></div>
+    <span class="val num" style="${first ? 'font-weight:700;color:#003B5C' : 'color:#52525B'}">+${v.toFixed(1)}</span>
+  </div>`;
+}).join("");
+
+// ---- 8 城指标表 ----
+const cities = [
+  ["北京","一线","552.6","8,981","1.95%","18,639","110.5"],
+  ["上海","一线","497.5","8,511","2.05%","16,780","99.5"],
+  ["深圳","一线","569.8","7,273","1.53%","19,218","114.0"],
+  ["广州","一线","294.7","5,056","2.06%","10,560","44.2"],
+  ["杭州","新一线","286.2","4,936","2.07%","10,255","42.9"],
+  ["成都","新一线","146.6","3,420","2.80%","5,253","22.0"],
+  ["南京","新一线","226.0","3,780","2.01%","8,101","33.9"],
+  ["武汉","新一线","116.0","2,880","2.98%","4,185","17.4"]
+];
+document.getElementById("cityTable").innerHTML = cities.map(([c, lvl, p, r, ratio, m, d]) => {
+  const hi = parseFloat(ratio) >= 2.5;
+  return `<tr><td><span class="num strong">${c}</span><span class="lvl">${lvl}</span></td>
+    <td><span class="num strong">${p}</span></td><td><span class="num">${r}</span></td>
+    <td><span class="num ${hi ? 'hi' : ''}">${ratio}</span></td><td><span class="num">${m}</span></td><td><span class="num">${d}</span></td></tr>`;
+}).join("");
+</script>
+</body>
+</html>

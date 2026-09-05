@@ -1,0 +1,26 @@
+<svg width="400" height="160" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="160" fill="#EAF4F2"/>
+<!-- skyline -->
+<rect x="20" y="60" width="44" height="100" fill="#0D4A6E"/>
+<rect x="76" y="34" width="52" height="126" fill="#003B5C"/>
+<rect x="140" y="72" width="38" height="88" fill="#328BB1"/>
+<rect x="300" y="48" width="48" height="112" fill="#0D4A6E"/>
+<rect x="356" y="80" width="34" height="80" fill="#328BB1"/>
+<!-- windows -->
+<g fill="#BFE3DC">
+<rect x="84" y="44" width="10" height="10"/><rect x="104" y="44" width="10" height="10"/>
+<rect x="84" y="64" width="10" height="10"/><rect x="104" y="64" width="10" height="10"/>
+<rect x="84" y="84" width="10" height="10"/><rect x="104" y="84" width="10" height="10"/>
+<rect x="308" y="58" width="10" height="10"/><rect x="326" y="58" width="10" height="10"/>
+<rect x="308" y="78" width="10" height="10"/><rect x="326" y="78" width="10" height="10"/>
+</g>
+<!-- rising arrow -->
+<path d="M60 96 L150 60 L230 78 L330 30" stroke="#059669" stroke-width="6" stroke-linecap="round" fill="none"/>
+<polygon points="330,18 344,36 318,40" fill="#059669"/>
+<!-- crowd -->
+<g fill="#0A0A0B">
+<circle cx="196" cy="128" r="8"/><rect x="186" y="138" width="20" height="22" rx="7"/>
+<circle cx="226" cy="130" r="8" fill="#003B5C"/><rect x="216" y="140" width="20" height="20" rx="7" fill="#003B5C"/>
+<circle cx="256" cy="128" r="8"/><rect x="246" y="138" width="20" height="22" rx="7"/>
+</g>
+</svg>
